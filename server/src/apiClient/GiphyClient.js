@@ -1,25 +1,23 @@
-import got from "got";
+import got from "got"
 
-const giphyApiKey = "samprs7x2dZeRpIQQ8C0ARQta1nffdFC";
+const giphyApiKey = "samprs7x2dZeRpIQQ8C0ARQta1nffdFC"
 const baseUrl = "http://api.giphy.com/v1/gifs"
 
-class GiphyClient {   
+class GiphyClient {
   static async getGiphs(query) {
-
     try {
-      const url = `${baseUrl}/search?api_key=${giphyApiKey}&q=${query}`;
-      const apiResponse = await got(url);
-      const responseBody = apiResponse.body;
+      const url = `${baseUrl}/search?api_key=${giphyApiKey}&q=${query}`
+      const apiResponse = await got(url)
+      const responseBody = apiResponse.body
 
       const gifsData = JSON.parse(responseBody)
 
-      let image_urls = []
-      gifsData.data.forEach((gif) => {
-        image_urls.push(gif.images.preview_gif.url)
+      const imageUrls = gifsData.data.map((gif) => {
+        return gif.images.preview_gif.url
       })
-      return image_urls;
+      return imageUrls
     } catch (error) {
-      return { error: error.message };
+      return { error: error.message }
     }
   }
 
@@ -37,14 +35,12 @@ class GiphyClient {
   //   const gifsData = JSON.parse(responseBody)
   // }
 
-  // static giphsByQuery(gifsData){
-  //   let image_urls = []
-  //   gifsData.data.forEach((gif) => {
-  //     image_urls.push(gif.images.preview_gif.url)
-  //   })
-  //   return image_urls;
-  // }
+  static giphsByQuery(gifsData) {
+    const imageUrls = gifsData.data.map((gif) => {
+      return gif.images.preview_gif.url
+    })
+    return imageUrls
+  }
 }
 
-
-export default GiphyClient;
+export default GiphyClient
