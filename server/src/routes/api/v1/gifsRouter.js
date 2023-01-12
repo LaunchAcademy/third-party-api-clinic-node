@@ -5,33 +5,29 @@ import GiphyClient from "../../../apiClient/GiphyClient.js"
 
 const gifsRouter = new express.Router()
 
-const baseUrl = "http://api.giphy.com/v1/gifs"
+const baseUrl = "http://api.giphy.com/v1/gifs/search"
 const giphyApiKey = "samprs7x2dZeRpIQQ8C0ARQta1nffdFC"
 
 gifsRouter.get("/", async (req, res) => {
+  const query = "cat"
+  // const url = `${baseUrl}?api_key=${giphyApiKey}&q=${query}`
+
   try {
-    const query = "cats"
 
-    const url = `${baseUrl}/search?api_key=${giphyApiKey}&q=${query}`
-    const apiResponse = await got(url)
+    // const response = await got(url)
+    // const gifBody = response.body
+    // const parsedGifData = JSON.parse(gifBody)
 
-    const responseBody = apiResponse.body
+    // const gifUrls = parsedGifData.data.map(gifObject => {
+    //   return gifObject.images.original.url
+    // })
 
-    const gifsData = JSON.parse(responseBody)
+    const gifUrls = await GiphyClient.getGiphs(query)
 
-    const imageUrls = gifsData.data.map((gif) => {
-      return gif.images.preview_gif.url
-    })
-
-    // debugger
-    console.log(imageUrls)
-
-    // const gifsResponse = await GiphyClient.getGiphs("steven-universe")
-
-    return res
-      .set({ "Content-Type": "application/json" })
+    return res.set({ "Content-Type": "application/json" })
       .status(200)
-      .json(imageUrls)
+      .json(gifUrls)
+
   } catch (error) {
     return res.status(401).json({ errors: error })
   }

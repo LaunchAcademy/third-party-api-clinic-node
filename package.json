@@ -16,6 +16,6 @@
     "start": "yarn workspace interacting-with-a-third-party-api-express-server start"
   },
   "engines": {
-    "node": "^14.15"
+    "node": "^16.18"
   }
 }

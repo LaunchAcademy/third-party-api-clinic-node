@@ -11,7 +11,6 @@ const App = (props) => {
     setGifs(parsedGifs)
   }
 
-  // JSON.stringify
 
   useEffect(() => {
     fetchGifs()
@@ -20,7 +19,7 @@ const App = (props) => {
   const gifImages = gifs.map((gifLink) => {
     return <img key={gifLink} src={gifLink} height="200" width="200"></img>
   })
-
+  
   return (
     <div>
       <h1>Fabulous Images</h1>

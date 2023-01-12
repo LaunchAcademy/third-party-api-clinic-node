@@ -35,12 +35,12 @@ class GiphyClient {
   //   const gifsData = JSON.parse(responseBody)
   // }
 
-  static giphsByQuery(gifsData) {
-    const imageUrls = gifsData.data.map((gif) => {
-      return gif.images.preview_gif.url
-    })
-    return imageUrls
-  }
+  // static giphsByQuery(gifsData) {
+  //   const imageUrls = gifsData.data.map((gif) => {
+  //     return gif.images.preview_gif.url
+  //   })
+  //   return imageUrls
+  // }
 }
 
 export default GiphyClient
