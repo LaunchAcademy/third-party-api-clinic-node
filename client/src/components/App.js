@@ -4,16 +4,16 @@ import { hot } from "react-hot-loader/root"
 const App = (props) => {
   const [gifs, setGifs] = useState([])
 
-  const fetchGifs = async () => {
+  const getGifs = async () => {
     const response = await fetch("/api/v1/gifs")
-    const parsedGifs = await response.json()
-    console.log(parsedGifs)
-    setGifs(parsedGifs)
+    const parsedImages = await response.json() 
+
+    setGifs(parsedImages)
   }
 
 
   useEffect(() => {
-    fetchGifs()
+    getGifs()
   }, [])
 
   const gifImages = gifs.map((gifLink) => {

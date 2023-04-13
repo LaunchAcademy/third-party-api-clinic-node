@@ -1,6 +1,8 @@
 import got from "got"
+import dotenv from "dotenv"
+dotenv.config()
 
-const giphyApiKey = "samprs7x2dZeRpIQQ8C0ARQta1nffdFC"
+const giphyApiKey = process.env.GIPHY_API_KEY
 const baseUrl = "http://api.giphy.com/v1/gifs"
 
 class GiphyClient {
@@ -8,12 +10,13 @@ class GiphyClient {
     try {
       const url = `${baseUrl}/search?api_key=${giphyApiKey}&q=${query}`
       const apiResponse = await got(url)
+      
       const responseBody = apiResponse.body
 
       const gifsData = JSON.parse(responseBody)
 
       const imageUrls = gifsData.data.map((gif) => {
-        return gif.images.preview_gif.url
+        return gif.images.original.url
       })
       return imageUrls
     } catch (error) {
