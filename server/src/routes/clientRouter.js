@@ -12,7 +12,7 @@ if (config.nodeEnv !== "production") {
   indexPath = path.join(currentPath, "../../../client/public/index.html");
 }
 
-const clientRoutes = ["/client", "/name", "/"];
+const clientRoutes = ["/"];
 
 router.get(clientRoutes, (req, res) => {
   res.sendFile(indexPath);

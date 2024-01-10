@@ -7,7 +7,6 @@ const rootRouter = new express.Router();
 
 rootRouter.use("/api/v1/gifs", gifsRouter);
 
-
 rootRouter.use("/", clientRouter);
 
 export default rootRouter;

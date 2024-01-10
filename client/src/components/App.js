@@ -7,10 +7,11 @@ const App = (props) => {
   const getGifs = async () => {
     const response = await fetch("/api/v1/gifs")
     const parsedImages = await response.json() 
-
+    
+    // debugger
+    
     setGifs(parsedImages)
   }
-
 
   useEffect(() => {
     getGifs()
